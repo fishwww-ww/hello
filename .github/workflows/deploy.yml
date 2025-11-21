@@ -49,7 +49,6 @@ jobs:
           ALIYUN_ACCESS_KEY_SECRET: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
           OSS_BUCKET: ${{ secrets.OSS_BUCKET }}
           OSS_ENDPOINT: ${{ secrets.OSS_ENDPOINT }}
-          OSS_PATH: ${{ secrets.OSS_PATH }}
         run: |
           # 下载并安装 ossutil
           wget https://gosspublic.alicdn.com/ossutil/1.7.14/ossutil64
@@ -61,12 +60,7 @@ jobs:
             --access-key-id $ALIYUN_ACCESS_KEY_ID \
             --access-key-secret $ALIYUN_ACCESS_KEY_SECRET
 
-          # 上传构建产物到 OSS
-          # OSS_PATH 是可选的，如果不设置则上传到根目录
-          if [ -z "$OSS_PATH" ]; then
-            ./ossutil64 cp -r dist/ oss://$OSS_BUCKET/ --update
-          else
-            ./ossutil64 cp -r dist/ oss://$OSS_BUCKET/$OSS_PATH/ --update
-          fi
+          # 上传构建产物到 OSS 根目录
+          ./ossutil64 cp -r dist/ oss://$OSS_BUCKET --update
 
-          echo "✅ 部署成功！文件已上传到 OSS"
+          echo "✅ 部署成功！文件已上传到 OSS 根目录"
