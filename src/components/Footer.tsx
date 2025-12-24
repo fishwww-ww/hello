@@ -26,6 +26,7 @@ function Footer({
           <span>{companyName}</span>
         </div>
         <div className="footer-beian">
+          {/* 工信部ICP备案 */}
           <a
             href={beianLink}
             target="_blank"
@@ -33,6 +34,21 @@ function Footer({
             className="footer-beian-link"
           >
             {beianNumber}
+          </a>
+
+          {/* 公安备案，带图标 */}
+          <a
+            href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=36082502000177"
+            rel="noreferrer"
+            target="_blank"
+            className="footer-beian-link footer-beian-police"
+          >
+            <img
+              src={"beiantubiao.png"}
+              alt="公安备案图标"
+              className="footer-beian-logo"
+            />
+            <span>赣公网安备 36082502000177号</span>
           </a>
         </div>
       </div>
